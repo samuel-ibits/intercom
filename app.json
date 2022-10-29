@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "intercom",
+    "slug": "intercom",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/intercom.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/intercom.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.joegreat.intercom"
+    },
+    "web": {
+      "favicon": "./assets/intercom.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "aa0ef6c6-e233-4602-acf1-5e48c50f2612"
+      }
+    }
+  }
+}
