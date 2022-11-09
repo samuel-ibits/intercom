@@ -18,9 +18,24 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Dailpad from "../../componets/dailpad";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
+
+
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('@intercom_auth')
+    console.log(jsonValue);
+    
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch(e) {
+    // error reading value
+  }
+}
+
 
 export default function Login({ navigation }) {
   return (

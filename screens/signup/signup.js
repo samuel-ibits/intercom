@@ -1,8 +1,12 @@
 import React from "react";
 import { View, Text, ToastAndroid,StyleSheet } from "react-native";
 import LoginScreen, { SocialButton } from "react-native-login-screen";
+import storeData from "../../componets/asyncstoragestore";
+
 
 export default function main() {
+          
+
   return (
     <LoginScreen
       logoImageSource={require("../../assets/logo-example.png")}

@@ -18,36 +18,81 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Dailpad from "../../componets/dailpad";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 export default function Register({ navigation }) {
+  
+  let [name, setName] = React.useState('');
+  let [email, setEmail] = React.useState('');
+  let [phone, setPhone] = React.useState('');
+  let [password, setPassword] = React.useState('');
+
+  
+ const str ={
+   name: name,
+  email: email,
+  phone: phone,
+  password:password,
+  };
+  
+  async function storeData (value) {
+    try {
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem('@intercom_auth', jsonValue)
+      console.log(jsonValue)
+
+    } catch (e) {
+      // saving error
+    }
+  }
+
+ 
+  
   return (
+    
     <View style={styles.container}>
       <Image
         style={{ width: 163, height: 30 }}
-        source={require("../../assets/logo-example.png")}
-      />
+        source={require("../../assets/logo-example.png")}/>
+        
+
+        <View style={styles.inputHolder}>
+        <View style={styles.inputSection}>
+          <Text style={styles.inputLabel}>Name</Text>
+          <TextInput style={styles.inputText}
+            value={name}
+          onChangeText={(name) => setName(name)} 
+          />  
+        </View>
+      
       <View style={styles.inputHolder}>
         <View style={styles.inputSection}>
           <Text style={styles.inputLabel}>Phone number</Text>
-          <TextInput style={styles.inputText} />
+          <TextInput style={styles.inputText}
+            value={phone}
+          onChangeText={(phone) => setPhone(phone)} 
+          />  
         </View>
         <View style={styles.inputSection}>
           <Text style={styles.inputLabel}>Email</Text>
-          <TextInput style={styles.inputText} />
+          <TextInput style={styles.inputText} 
+            value={email}
+          onChangeText={(email) =>setEmail(email)}
+          />
         </View>
         <View style={styles.inputSection}>
           <Text style={styles.inputLabel}>Password</Text>
-          <TextInput style={styles.inputText} />
+          <TextInput style={styles.inputText} 
+            value={password}
+           onChangeText={(password) => setPassword({ password })}
+          />
         </View>
-        <View style={styles.inputSection}>
-          <Text style={styles.inputLabel}>Re-type Password</Text>
-          <TextInput style={styles.inputText} />
-        </View>
+        
 
-        <TouchableOpacity style={styles.bigBtn} activeOpacity={0.7}>
+        <TouchableOpacity style={styles.bigBtn} activeOpacity={0.7} onPress={() => storeData}>
           <Text style={styles.btnLabel}>Signup</Text>
         </TouchableOpacity>
       </View>
@@ -60,7 +105,9 @@ export default function Register({ navigation }) {
             <Text  style={styles.btnLabel2}>Login</Text>
           </TouchableOpacity>
       </View>
+    </View>    
     </View>
+
   );
 }
 
